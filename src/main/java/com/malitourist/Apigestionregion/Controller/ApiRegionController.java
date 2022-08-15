@@ -100,7 +100,7 @@ public class ApiRegionController {
 	}
     
     /*-------Controller qui ajoute le nombre d'habitant en fonction de l'année--------*/
-    @ApiOperation(value = "Cette requette permet d'afficher la liste des pays")
+    @ApiOperation(value = "Cette requette permet d'ajouter des nbre d'habitants")
 	@PostMapping(value = "/ajouter_habitant")
 	 public Habitant ajouterHabitant(@RequestBody Habitant habitant) {
 		
