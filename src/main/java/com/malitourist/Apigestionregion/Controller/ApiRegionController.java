@@ -38,17 +38,20 @@ public class ApiRegionController {
 	@ApiOperation(value = "Bienvenu à la page de test de notre api de Gestion des régions")
 	@RequestMapping("/")
 	public String getPage() {
+
 		return "Bienvenue" ;
 	}
 	@ApiOperation(value = "Cette requette permet d'afficher la liste des regions avec pays")
 	@GetMapping(value = "/region")
 	public List<Region> getRegions() {
+
 		return serviceregion.getRegion();
 	}
 	
 	@ApiOperation(value = "Cette requette permet d'afficher la liste des regions sans pays")
 	@GetMapping(value = "/regionsanspays")
 	public Iterable<Object[]> getRegionssanspays() {
+
 		return serviceregion.getRegionsanspays();
 	}
 	
@@ -62,6 +65,7 @@ public class ApiRegionController {
     @ApiOperation(value = "Cette requette permet de modifier une region donnnée")
 	@PutMapping(value = "modifier_region/{coderegion}")
 	 public Region modifierRegion(@RequestBody Region region) {
+
 		return serviceregion.modifierRegion(region);
 	}
 	
@@ -96,6 +100,7 @@ public class ApiRegionController {
     @ApiOperation(value = "Cette requette permet d'afficher la liste des nombres d'habitant en fonction de l'année")
 	@GetMapping(value = "/habitant")
 	public List<Habitant> getHabitant() {
+
 		return servicehabitant.getHabitant();
 	}
     

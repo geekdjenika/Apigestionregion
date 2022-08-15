@@ -12,22 +12,31 @@ public class ServiceRegion {
 	@Autowired
 	public DepotRegion depotregion;
 	
+	//Ajouter une region
 	public Region ajouterRegion(Region region) {
+
 		return depotregion.save(region);
 	}
+	//Ajouter une liste de region
 	public List<Region> ajouterRegion(List<Region> regions) {
+
 		return depotregion.saveAll(regions);
 	}
-	
+
+	//Afficher la liste des régions avec pays
 	public List<Region> getRegion() {
+
 		return depotregion.findAll();
 	}
-	
+
+	//Aficher la liste des régions sans pays
 	public Iterable<Object[]> getRegionsanspays() {
+
 		return depotregion.listeRegionSansPays();
 	}
 	
 	public Region getRegionById(long id) {
+
 		return depotregion.findById(id).orElse(null);
 	}
 	
