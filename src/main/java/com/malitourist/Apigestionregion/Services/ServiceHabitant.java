@@ -21,10 +21,10 @@ public class ServiceHabitant {
 		return depothabitant.findAll();
 	}
 	
-	public String supprimerHabitant(long id) {
+	/*public String supprimerHabitant(long id) {
 		depothabitant.deleteById(id);
 		return "Habitant "+id+" supprimé avec succès!";
-	}
+	}*/
 	
 //	public Habitant modifierHabitant(Habitant habitant) {
 //		Habitant habitantExistant=depothabitant.findById(habitant.getNb_habitant()).orElse(null);

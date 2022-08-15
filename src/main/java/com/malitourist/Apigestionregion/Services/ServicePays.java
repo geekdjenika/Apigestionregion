@@ -21,14 +21,14 @@ public class ServicePays {
 		return depotpays.findAll();
 	}
 	
-	public String supprimerPays(long id) {
+	/*public String supprimerPays(long id) {
 		depotpays.deleteById(id);
 		return "Pays "+id+" supprimé avec succès!";
-	}
+	}*/
 	
 //	public Pays modifierPays(Pays pays) {
 //		Pays paysExistant=depotpays.findById(pays.getIdPays()).orElse(null);
-//		
+//
 //		paysExistant.setNom(pays.getNom());
 //		return depotpays.save(paysExistant);
 //	}

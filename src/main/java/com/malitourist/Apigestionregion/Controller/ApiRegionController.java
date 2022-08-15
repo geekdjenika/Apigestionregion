@@ -54,14 +54,14 @@ public class ApiRegionController {
 	
 	@ApiOperation(value = "Cette requette permet d'ajouter une region à la liste des régions")
 	@PostMapping(value = "/ajouter_region")
-	 public Region ajouterRegion(@RequestBody Region region) {
-		
+	 public String ajouterRegion(@RequestBody Region region) {
+
 		return serviceregion.ajouterRegion(region);
 	}
 	
     @ApiOperation(value = "Cette requette permet de modifier une region donnnée")
 	@PutMapping(value = "modifier_region/{coderegion}")
-	 public Region modifierRegion(@RequestBody Region region) {
+	 public String modifierRegion(@RequestBody Region region) {
 		return serviceregion.modifierRegion(region);
 	}
 	
