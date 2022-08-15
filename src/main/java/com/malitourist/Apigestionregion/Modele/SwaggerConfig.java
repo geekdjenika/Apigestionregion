@@ -28,8 +28,8 @@ public class SwaggerConfig {
 	    @Bean
 	    public ApiInfo apiInfo() {
 	        final ApiInfoBuilder builder = new ApiInfoBuilder();
-	        builder.title("My Application API through Swagger UI").version("1.0").license("(C) Copyright Test")
-	        .description("List of all the APIs of My Application App through Swagger UI");
+	        builder.title("Bienvenue, ici vous pouvez tester les fonctionnaliés de notre API de gestion des régions du Mali!").version("1.0").license("(C) MaliTourist 2022")
+	        .description("Liste de toutes les fonctionnalités de l'API à travers Swagger UI");
 	        return builder.build();
 	        }
 }
