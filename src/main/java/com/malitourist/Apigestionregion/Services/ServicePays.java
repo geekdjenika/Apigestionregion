@@ -12,7 +12,10 @@ import com.malitourist.Apigestionregion.Modele.Pays;
 public class ServicePays {
 	@Autowired
 	public DepotPays depotpays;
-	
+
+	public Pays findByNom(Pays pays) {
+		return depotpays.findByNom(pays.getNom());
+	}
 	public Pays ajouterPays(Pays pays) {
 		return depotpays.save(pays);
 	}

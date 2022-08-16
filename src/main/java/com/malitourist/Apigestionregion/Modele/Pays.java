@@ -1,27 +1,23 @@
 package com.malitourist.Apigestionregion.Modele;
 
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
 
 @Entity
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Pays {
 
 	@Id
-	@Column(name = "nom")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
+	long id;
+	@Column(unique = true)
 	public String nom;
-	
-	public Pays() {}
-	
-	public Pays(String nom) {
-		this.nom = nom;
-	}
-	public String getNom() {
-		return nom;
-	}
-	public void setNom(String nom) {
-		this.nom = nom;
-	}
 
 }

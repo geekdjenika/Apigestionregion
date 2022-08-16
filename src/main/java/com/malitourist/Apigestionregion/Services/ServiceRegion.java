@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.malitourist.Apigestionregion.Exception.Existedeja;
 import com.malitourist.Apigestionregion.Exception.Nonexistant;
+import com.malitourist.Apigestionregion.Modele.Pays;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
@@ -19,16 +20,21 @@ public class ServiceRegion {
 	public DepotRegion depotregion;
 	EntityManager entityManager;
 
+	public Region findByCoderegion(Region region) {
+		return depotregion.findByCoderegion(region.getCoderegion());
+	}
+
 	//Ajout d'une région à la liste
 	public String ajouterRegion(Region region) {
 		//return depotregion.save(region);
-		Region regionexistant = depotregion.findById(region.getId()).orElse(null);
+		Region regionexistant = depotregion.findByCoderegion(region.getCoderegion());
 		if(regionexistant==null) {
 			/*entityManager.createNamedQuery("INSERT INTO malitourist_region.habitant(nb_habitant) values (\"?\")", ServiceRegion.class)
 					.setParameter(1,region.getPays()).executeUpdate();
 			entityManager.createNamedQuery("INSERT INTO malitourist_region.pays(nom) values (\"?\")", ServiceRegion.class)
 					.setParameter(1,region.getPays()).executeUpdate();
 			depotregion.save(region);*/
+			depotregion.save(region);
 			return "Region ajouté avec succès !";
 		}
 		else {
@@ -80,14 +86,12 @@ public class ServiceRegion {
 	public String modifierRegion(Region region) {
 		Region regionExistant=depotregion.findById(region.getId()).orElse(null);
 		if(regionExistant == null) {
-			throw new Nonexistant(
-					"La région que vous voulez modifier n'existe pas !"
-			);
+			return "La région que vous voulez modifier n'existe pas !";
 		} else {
+
 			regionExistant.setCoderegion(region.getCoderegion());
 			regionExistant.setDomaine_activite(region.getDomaine_activite());
 			regionExistant.setLangue(region.getLangue());
-			regionExistant.setNb_habitant(region.getNb_habitant());
 			regionExistant.setNom(region.getNom());
 			regionExistant.setPays(region.getPays());
 			regionExistant.setSuperficie(region.getSuperficie());
