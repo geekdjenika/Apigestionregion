@@ -2,49 +2,34 @@ package com.malitourist.Apigestionregion.Services;
 
 import java.util.List;
 
-import com.malitourist.Apigestionregion.Exception.Existedeja;
+
+import com.malitourist.Apigestionregion.Exception.Message;
 import com.malitourist.Apigestionregion.Exception.Nonexistant;
-import com.malitourist.Apigestionregion.Modele.Pays;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.Query;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import com.malitourist.Apigestionregion.Depot.DepotRegion;
 import com.malitourist.Apigestionregion.Modele.Region;
 
-import javax.persistence.EntityManager;
-
 @Service
 public class ServiceRegion {
 	@Autowired
 	public DepotRegion depotregion;
-	EntityManager entityManager;
 
-	public Region findByCoderegion(Region region) {
-		return depotregion.findByCoderegion(region.getCoderegion());
+	public Region findByName(Region region) {
+		return depotregion.findByCoderegion(region.getNom());
 	}
+
 
 	//Ajout d'une région à la liste
-	public String ajouterRegion(Region region) {
-		//return depotregion.save(region);
-		Region regionexistant = depotregion.findByCoderegion(region.getCoderegion());
-		if(regionexistant==null) {
-			/*entityManager.createNamedQuery("INSERT INTO malitourist_region.habitant(nb_habitant) values (\"?\")", ServiceRegion.class)
-					.setParameter(1,region.getPays()).executeUpdate();
-			entityManager.createNamedQuery("INSERT INTO malitourist_region.pays(nom) values (\"?\")", ServiceRegion.class)
-					.setParameter(1,region.getPays()).executeUpdate();
-			depotregion.save(region);*/
-			depotregion.save(region);
-			return "Region ajouté avec succès !";
-		}
-		else {
-			return "Cette région existe déjà !";
-			//throw new Existedeja( "Cette région existe déjà !");
+	public Object ajouterRegion(Region region) {
+		try {
+			return depotregion.save(region);
+		}catch (Exception e){
+			return Message.ErreurReponse("La region "+region.getCoderegion()+ " existe déjà", HttpStatus.OK);
 		}
 	}
-	/*public List<Region> ajouterRegion(List<Region> regions) {
-		return depotregion.saveAll(regions);
-	}*/
 
 	//Affichage de la liste des régions avec pays
 	public List<Region> getRegion() {
@@ -57,18 +42,14 @@ public class ServiceRegion {
 	}
 
 	//Affichage d'une région spécifique en fonction de son id
-	public Region getRegionById(long id) {
-		return depotregion.findById(id).orElseThrow(
-				() -> new Nonexistant(
-						"Pas de région à l'id "+id
-				)
-		);
-	}
-	
-//	public Region getRegionByPays(Pays pays) {
-//		return depotregion.findByPays(pays).orElse(null);
-//	}
+	public Object getRegionById(long id) {
+		try {
+			return depotregion.findById(id);
+		} catch (Exception e) {
+			return Message.ErreurReponse("Il n'y a pas de région à l'ID "+id,HttpStatus.OK);
+		}
 
+	}
 
 	//Suppression d'une région à travers son id
 	public String supprimerRegion(long id) {
