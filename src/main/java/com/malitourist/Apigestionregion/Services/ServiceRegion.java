@@ -5,7 +5,6 @@ import java.util.List;
 
 import com.malitourist.Apigestionregion.Exception.Message;
 import com.malitourist.Apigestionregion.Exception.Nonexistant;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
@@ -14,11 +13,14 @@ import com.malitourist.Apigestionregion.Modele.Region;
 
 @Service
 public class ServiceRegion {
-	@Autowired
-	public DepotRegion depotregion;
+	public final DepotRegion depotregion;
 
-	public Region findByName(Region region) {
-		return depotregion.findByCoderegion(region.getNom());
+	public ServiceRegion(DepotRegion depotregion) {
+		this.depotregion = depotregion;
+	}
+
+	public Region findByName(String nom) {
+		return depotregion.findByNom(nom);
 	}
 
 

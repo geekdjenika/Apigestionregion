@@ -19,7 +19,6 @@ public class Habitant {
 	public String nb_habitant;
 	public int annee;
 	@ManyToOne
-	@JoinColumn(name = "idRegion")
 	public Region region;
 
 }

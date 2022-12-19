@@ -1,10 +1,12 @@
 package com.malitourist.Apigestionregion.Exception;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Nonexistant extends RuntimeException{
     private String message;
-    public Nonexistant() {}
-    public Nonexistant(String msg) {
-        super(msg);
-        this.message = msg;
-    }
 }

@@ -1,4 +1,4 @@
-package com.malitourist.Apigestionregion.Modele;
+package com.malitourist.Apigestionregion.Configuration;
 
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;

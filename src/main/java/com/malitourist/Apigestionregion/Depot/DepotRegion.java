@@ -6,10 +6,12 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import com.malitourist.Apigestionregion.Modele.Region;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface DepotRegion extends JpaRepository<Region, Long> {
 	@Query(value = "SELECT nom, langue, superficie  FROM malitourist_region.region", nativeQuery = true)
     Iterable<Object[]> listeRegionSansPays();
 
-    Region findByCoderegion(String coderegion);
+    Region findByNom(String nom);
 }
